@@ -1,0 +1,18 @@
+services:
+  planner:
+    build: ./services/planner
+    ports:
+      - "127.0.0.1:${DEMO_PORT:-8080}:8080"
+    environment:
+      HOST: 0.0.0.0
+      PORT: "8080"
+      OPERATION_PATH: /plan
+      UPSTREAM_URL: http://grid-model:8081/score
+    depends_on:
+      - grid-model
+  grid-model:
+    build: ./services/grid-model
+    environment:
+      HOST: 0.0.0.0
+      PORT: "8081"
+      OPERATION_PATH: /score

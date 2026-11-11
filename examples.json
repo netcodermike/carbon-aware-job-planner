@@ -1,0 +1,56 @@
+{
+  "slug": "carbon-aware-job-planner",
+  "gateway": [
+    "planner",
+    "/plan",
+    "Python"
+  ],
+  "worker": [
+    "grid-model",
+    "/score",
+    "C#"
+  ],
+  "cases": [
+    [
+      "Schedule a two-hour batch",
+      {
+        "gridGPerKwh": [
+          420,
+          390,
+          180,
+          140,
+          230,
+          380
+        ],
+        "hours": 2,
+        "deadlineHour": 5,
+        "kwhPerHour": 1.5
+      },
+      200,
+      {
+        "startHour": 2,
+        "endHour": 4,
+        "grams": 480,
+        "eligibleWindows": 4
+      }
+    ],
+    [
+      "Deadline precludes completion",
+      {
+        "gridGPerKwh": [
+          420,
+          390,
+          180
+        ],
+        "hours": 2,
+        "deadlineHour": 1,
+        "kwhPerHour": 1
+      },
+      200,
+      {
+        "startHour": null,
+        "eligibleWindows": 0
+      }
+    ]
+  ]
+}
